@@ -1,0 +1,18 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = -9
+
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/overrides.lua"]'
+pattern = "if not center then center = G.P_CENTERS['p_buffoon_normal_1'] end  return center"
+position = "before"
+payload = '''if not center then
+    local key = SMODS.Mods.subtractions.get_default('Booster')
+    if key then
+        cenfer = G.P_CENTERS[key]
+    end
+end
+'''
+match_indent = true

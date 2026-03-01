@@ -1,0 +1,42 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+
+# compatibility with multiplayer's inclusion rules
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "if add and not G.GAME.banned_keys[v.key] then "
+position = "before"
+payload = '''if add then
+    -- yes, this is two ways of checking for mp jokers...
+    if v.mp_include then add = v:mp_include() end
+
+    local key_mp = v.key:match('^j_mp_(.+)')
+    if key_mp and G.GAME.banned_keys['j_' .. key_mp] then
+        add = false
+    end
+end
+'''
+match_indent = true
+
+# if original is banned, don't use multiplayer's reworks
+[[patches]]
+[patches.pattern]
+target = '=[SMODS Multiplayer "rulesets/sandbox.lua"]'
+pattern = 'if mapping.active and mapping.sandbox == joker_key then return true end'
+position = "at"
+payload = '''if mapping.active and mapping.sandbox then
+    return not G.GAME.banned_keys[mapping.vanilla]
+end
+'''
+match_indent = true
+
+# handle empty pool ourselves, instead of letting cryptid do it
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "if G.GAME.oldbpfactor and G.GAME.oldbpfactor >= 2 then"
+position = "at"
+payload = "if false then"
+match_indent = true

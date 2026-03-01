@@ -1,0 +1,15 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = -9
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "sticker:apply(card, true)"
+position = "at"
+payload = '''if not G.GAME.banned_keys[sticker.key] then
+    sticker:apply(card, true)
+end
+'''
+match_indent = true

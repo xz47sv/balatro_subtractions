@@ -1,0 +1,18 @@
+{
+	"id": "subtractions",
+	"name": "Subtractions",
+	"author": ["ash"],
+	"description": "Subtracts additions",
+	"prefix": "sub",
+	"main_file": "init.lua",
+	"priority": 9223372036854775807,
+	"badge_text_colour": "FFFFFF",
+	"display_name": "Subtractions",
+	"version": "0.1.0",
+	"dependencies": [
+		"Steamodded (>=1.*)",
+		"Lovely (>=0.9)",
+        "mod_utils (>=0.1)"
+	],
+	"conflicts": []
+}

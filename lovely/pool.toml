@@ -1,0 +1,27 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = -10
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "_pool[#_pool + 1] = 'UNAVAILABLE'"
+position = "at"
+payload = ""
+match_indent = false
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "if _pool_size == 0 then"
+position = "before"
+payload = '''if _pool_size == 0 then
+    local default = SMODS.Mods.subtractions.get_default(_type)
+    if default then
+        _pool[1] = default
+        _pool_size = 1
+    end
+end
+'''
+match_indent = true
