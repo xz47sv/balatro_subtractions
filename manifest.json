@@ -1,7 +1,7 @@
 {
 	"id": "subtractions",
 	"name": "Subtractions",
-	"author": ["ash"],
+	"author": ["xz47sv"],
 	"description": "Subtracts additions",
 	"prefix": "sub",
 	"main_file": "init.lua",
