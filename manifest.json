@@ -8,11 +8,11 @@
 	"priority": 9223372036854775807,
 	"badge_text_colour": "FFFFFF",
 	"display_name": "Subtractions",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"dependencies": [
-		"Steamodded (>=1.*)",
+		"Steamodded (>=1.0.0~BETA-1503a)",
 		"Lovely (>=0.9)",
-        "mod_utils (>=0.1)"
+        "mod_utils (>=0.1.0)"
 	],
 	"conflicts": []
 }
